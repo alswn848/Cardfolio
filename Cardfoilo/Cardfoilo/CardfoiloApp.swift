@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct CardfoiloApp: App {
+    @State var isLaunch = true
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLaunch {
+                LodingView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            isLaunch = false
+                        }
+                    }
+            } else {
+                OpeningView()
+                    .navigationBarBackButtonHidden()
+            }
         }
     }
 }
