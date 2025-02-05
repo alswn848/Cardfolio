@@ -7,43 +7,49 @@ struct OpeningView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment:.leading, spacing: 0) {
                 
                 TabView(selection: $currentIndex) {
                     ForEach(0..<pageCount, id: \.self) { index in
                         Image(images[index % images.count])
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 310)
-                            
+                        
                     }
                 }
+                
+                .frame(height: 340)
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // 기본 인디케이터 숨김
                 .animation(.easeInOut, value: currentIndex) // 페이지 전환 애니메이션 추가
                 
-                HStack {
-                    DotsIndicator(pageCount: pageCount, currentIndex: currentIndex, color: .gray)
-                        .padding(.top, 20)
-                    Spacer()
+                VStack (alignment:.leading){
+                    
+                    HStack {
+                        DotsIndicator(pageCount: pageCount, currentIndex: currentIndex, color: .gray)
+                            
+                    }
+                    .padding(.leading,20)
+
+                    
+                    NavigationLink {
+                        LoginView()
+                    } label: {
+                        RoundedRectangle(cornerRadius: 100)
+                            .frame(width: 137, height: 48)
+                            .foregroundColor(.black)
+                            .overlay(
+                                Text("시작하기")
+                                    .font(Font.custom("Pretendard", size: 16))
+                                    .foregroundColor(.white)
+                            )
+                    }
+                    .padding(.leading,20)
+                    .padding(.top,60)
+
                 }
-                .offset(x:60,y: -200)
-                
-                NavigationLink {
-                    LoginView()
-                } label: {
-                    RoundedRectangle(cornerRadius: 100)
-                        .frame(width: 137, height: 48)
-                        .foregroundColor(.black)
-                        .overlay(
-                            Text("시작하기")
-                                .font(.title2)
-                                .foregroundColor(.white)
-                        )
-                }
-                
-                .padding(.trailing, 160)
             }
-            
+            .padding(.horizontal,30)
+            .padding(.top,150)
             
             
         }
