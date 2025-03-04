@@ -7,22 +7,30 @@
 
 import SwiftUI
 
+class AppState: ObservableObject {
+    @Published var isLaunch = true
+}
+
 @main
 struct CardfoiloApp: App {
-    @State var isLaunch = true
+    @StateObject private var appState = AppState()
+
     var body: some Scene {
         WindowGroup {
-            if isLaunch {
-                LodingView()
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            isLaunch = false
+            NavigationStack {
+                if appState.isLaunch {
+                    LodingView()
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                appState.isLaunch = false
+                            }
                         }
-                    }
-            } else {
-                OpeningView()
-                    .navigationBarBackButtonHidden()
+                } else {
+                    OpeningView()
+                        
+                }
             }
+            
         }
     }
 }

@@ -14,8 +14,7 @@ struct AuthChoiceBox: View {
     var body: some View {
         VStack(alignment:.leading) {
             ZStack{
-                
-                if color == .yellow{
+                if color == .yellow {
                     RoundedRectangle(cornerRadius: 2)
                         .frame(width: 320, height: 50)
                         .foregroundColor(color)
@@ -25,6 +24,7 @@ struct AuthChoiceBox: View {
                         .frame(width: 320, height: 50)
                         .foregroundColor(color)
                 }
+                
                 HStack{
                     Image(image)
                         .resizable()
@@ -43,5 +43,5 @@ struct AuthChoiceBox: View {
             }
         }
     }
-    }
+}
 

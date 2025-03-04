@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack{
                 Spacer()
                 Text("NAME")
@@ -77,6 +77,7 @@ struct LoginView: View {
                 }
                 .padding(10)
             }
+
         }
     }
 }
